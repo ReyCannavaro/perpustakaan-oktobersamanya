@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpusuper/title>
+</head>
+<body>
+    <script>
+class Book {
+    constructor(title, author, year, genre) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+    }
+
+    getDetails() {
+        return `${this.title} oleh ${this.author}, Tahun: ${this.year}, Genre: ${this.genre}`;
+    }
+}
+
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    addBook(book) {
+        this.books.push(book);
+        console.log(`Buku "${book.title}" berhasil ditambahkan.`);
+    }
+
+    editBook(oldTitle, newTitle, newAuthor, newYear, newGenre) {
+        let book = this.books.find(b => b.title === oldTitle);
+        if (book) {
+            book.title = newTitle || book.title;
+            book.author = newAuthor || book.author;
+            book.year = newYear || book.year;
+            book.genre = newGenre || book.genre;
+            console.log(`Buku "${oldTitle}" berhasil diperbarui.`);
+        } else {
+            console.log(`Buku dengan judul "${oldTitle}" tidak ditemukan.`);
+        }
+    }
+
+    deleteBook(title) {
+        const index = this.books.findIndex(b => b.title === title);
+        if (index !== -1) {
+            this.books.splice(index, 1);
+            console.log(`Buku "${title}" berhasil dihapus.`);
+        } else {
+            console.log(`Buku dengan judul "${title}" tidak ditemukan.`);
+        }
+    }
+
+    displayBooks() {
+        if (this.books.length === 0) {
+            console.log("Tidak ada buku di perpustakaan.");
+        } else {
+            console.log("Daftar Buku di Perpustakaan:");
+            this.books.forEach(book => {
+                console.log(book.getDetails());
+            });
+        }
+    }
+}
+
+let myLibrary = new Library();
+
+let book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "Fiksi"); //contoh
+let book2 = new Book("To Kill a Mockingbird", "Harper Lee", 1960, "Drama"); //ini juga contoh bu 
+myLibrary.addBook(book1);
+myLibrary.addBook(book2);
+
+myLibrary.displayBooks();
+
+myLibrary.editBook("The Great Gatsby", "The Greatest Gatsby", "Fitzgerald", 1926, "Novel");
+
+myLibrary.displayBooks();
+
+myLibrary.deleteBook("To Kill a Mockingbird");
+
+myLibrary.displayBooks();
+
+    </script>
+</body>
+</html>
