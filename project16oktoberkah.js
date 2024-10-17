@@ -1,29 +1,29 @@
-let books = {
-    "1": {
-        judul: "Menu Kos-kosan Sehat Menyenangkan",
-        penulis: "Raffi Meks",
-        tahunTerbit: 2007,
-        genre: "Kuliner"
-    }
+let bookCollection = {
+  "1": {
+      title: "Menu Kos-kosan Sehat Menyenangkan",
+      author: "Raffi Meks",
+      publicationYear: 2007,
+      category: "Kuliner"
+  }
 };
 
-function addBook(id, judul, penulis, tahunTerbit, genre) {
-  books[id] = { judul, penulis, tahunTerbit, genre };
+function insertBook(bookId, title, author, publicationYear, category) {
+  bookCollection[bookId] = { title, author, publicationYear, category };
 }
 
-function getBookById(id) {
-  return books[id];
+function fetchBookById(bookId) {
+  return bookCollection[bookId];
 }
 
-function updateBook(id, updatedJudul, updatedPenulis, updatedTahunTerbit, updatedGenre) {
-    if (books[id]) {
-        if (updatedJudul !== undefined) books[id].judul = updatedJudul;
-        if (updatedPenulis !== undefined) books[id].penulis = updatedPenulis;
-        if (updatedTahunTerbit !== undefined) books[id].tahunTerbit = updatedTahunTerbit;
-        if (updatedGenre !== undefined) books[id].genre = updatedGenre;
-    }
+function modifyBook(bookId, newTitle, newAuthor, newYear, newCategory) {
+  if (bookCollection[bookId]) {
+      if (newTitle !== undefined) bookCollection[bookId].title = newTitle;
+      if (newAuthor !== undefined) bookCollection[bookId].author = newAuthor;
+      if (newYear !== undefined) bookCollection[bookId].publicationYear = newYear;
+      if (newCategory !== undefined) bookCollection[bookId].category = newCategory;
+  }
 }
 
-function deleteBook(id) {
-  delete books[id];
+function removeBook(bookId) {
+  delete bookCollection[bookId];
 }
